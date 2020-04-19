@@ -19,6 +19,7 @@ class ViewController: UIViewController {
         setUpElements()
         
     }
+    //Slate
     func setUpElements(){
         
         Utilities.styleHollowButton(btnLogin)
