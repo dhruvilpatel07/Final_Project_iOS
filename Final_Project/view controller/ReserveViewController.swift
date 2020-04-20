@@ -22,13 +22,13 @@ class ReserveViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     let mainDelegate = UIApplication.shared.delegate as! AppDelegate
     
     var pickerData: [String] = [String]()
-    var numberOfPeople = 1
+    var type = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.picker.delegate = self
         self.picker.dataSource = self
-        pickerData = ["1","2","3","4","5","6","7","8","9","10"]
+        pickerData = ["Financial","Birth Day","Family","Grocery","Other"]
         //lblError.alpha = 0
         setUpElements()
     }
@@ -58,19 +58,13 @@ class ReserveViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         //print(pickerData[row])
-        numberOfPeople = Int(pickerData[row])!
-        print(numberOfPeople)
+       // numberOfPeople = Int(pickerData[row])!
+        print(type)
     }
     
     func setUpLocalNotification(){
         
         //Setting a day back
-        let today = datePicker.date
-        print(today)
-        let modifiedDate = Calendar.current.date(byAdding: .day, value: -1, to: today)!
-        print(modifiedDate)
-        
-        datePicker.setDate(modifiedDate, animated: true)
         
         let content = UNMutableNotificationContent()
         content.title = "Reminder!"
@@ -79,7 +73,7 @@ class ReserveViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
         let dateString = formatter.string(from:datePicker.date)
-        content.body = "You have reservation at Gurulakshmi \non \(dateString) for \(numberOfPeople) people"
+        content.body = "You have reminder"
         content.sound = UNNotificationSound.default
         let trig = UNCalendarNotificationTrigger(dateMatching: datePicker.calendar.dateComponents([.year, .month, .day, .hour, .minute], from: datePicker.date), repeats: false)
         //unique string identifier
