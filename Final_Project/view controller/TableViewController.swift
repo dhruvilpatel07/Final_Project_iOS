@@ -10,7 +10,8 @@ import UIKit
 
 class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet var tableView: UITableView!
+    //@IBOutlet var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     
     let mainDeligate = UIApplication.shared.delegate as! AppDelegate
     
@@ -70,6 +71,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        mainDeligate.readDataFromDatabase()
 
         // Do any additional setup after loading the view.
     }
